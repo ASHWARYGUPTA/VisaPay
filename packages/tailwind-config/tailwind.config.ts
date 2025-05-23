@@ -1,13 +1,22 @@
 import type { Config } from "tailwindcss";
-import tailwindcssAnimate from "tailwindcss-animate";
 const config: Config = {
   content: [
-    "./src/**/*.{js,ts,jsx,tsx}",
-    "../../apps/**/src/**/*.{js,ts,jsx,tsx}",
+    "./src/**/*.{js,ts,jsx,tsx,mdx}",
+    "../apps/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        "glow-conic":
+          "conic-gradient(from 180deg at 50% 50%, #2a8af6 0deg, #a853ba 180deg, #e92a67 360deg)",
+      },
+    },
+    fontFamily: {
+      roboto: ["Roboto"],
+      "open-sans": ["Open Sans"],
+    },
   },
-  plugins: [tailwindcssAnimate],
+  plugins: [],
 };
+
 export default config;

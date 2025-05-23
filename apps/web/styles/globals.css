@@ -1,3 +1,4 @@
 @import "../../../packages/tailwind-config/themes.css";
-
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

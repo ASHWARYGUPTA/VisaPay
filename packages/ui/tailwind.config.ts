@@ -1,13 +1,8 @@
-import sharedConfig from "@repo/tailwind-config/tailwind.config";
 import type { Config } from "tailwindcss";
+import sharedConfig from "@repo/tailwind-config/tailwind.config";
 
 const config: Pick<Config, "presets"> = {
-  presets: [
-    {
-      ...sharedConfig,
-      content: ["./**/*{.tsx.jsx}"],
-    },
-  ],
+  presets: [sharedConfig],
 };
 
 export default config;

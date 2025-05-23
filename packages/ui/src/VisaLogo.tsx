@@ -1,3 +1,5 @@
+import "./styles.css";
+
 interface VisaLogoInterface {
   widthN: Number;
   heightN: Number;

@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
-import Button from "./Button";
-import MenuButton from "./MenuButton";
-import VisaLogo from "./VisaLogo";
+import React, { useState } from "react";
+import Button from "@repo/ui/Button";
+import MenuButton from "@repo/ui/MenuButton";
+import VisaLogo from "@repo/ui/VisaLogo";
 
 export default function NavBar() {
-  const [p, useP] = React.useState(false);
+  const [p, useP] = useState(false);
   return (
     <>
       <div className="h-auto mt-2 w-svw mx-1 bg-[#ffffff7e] rounded-xl fixed top-0 left-0">

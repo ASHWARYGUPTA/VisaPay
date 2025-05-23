@@ -1,3 +1,5 @@
+import "./styles.css";
+
 export default function MenuButton({ f }: { f: () => void }) {
   return (
     <button className="cursor-pointer" onClick={f}>

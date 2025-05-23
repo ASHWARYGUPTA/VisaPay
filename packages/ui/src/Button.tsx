@@ -1,4 +1,4 @@
-"use client";
+import "./styles.css";
 
 enum ButtonTypes {
   blueNormal = "blue",
