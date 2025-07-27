@@ -31,7 +31,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <NavBar moodChanger={ModeToggle} />
-          {children}
+          <div>{children}</div>
         </ThemeProvider>
       </body>
     </html>
