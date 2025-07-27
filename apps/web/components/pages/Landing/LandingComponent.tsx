@@ -9,9 +9,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["200", "400", "700"] });
 const LandingComponent = () => {
   return (
     <>
-      <div className="flex flex-col h-screen items-center justify-center mt-[35px]">
+      <div className="flex flex-col h-screen items-center justify-center md:mt-[35px]">
         <div
-          className={`w-[700px] text-center font-bold text-[70px] ${inter.className}`}
+          className={`text-[50px] md:w-[700px] text-center font-bold md:text-[70px] ${inter.className}`}
           style={{
             letterSpacing: "-0.07em",
             lineHeight: "98.5%",
@@ -23,13 +23,13 @@ const LandingComponent = () => {
           style={{
             letterSpacing: "0.02em",
           }}
-          className={`my-2 text-[36px] ${poppins.className} font-extralight drop-shadow-[13px_13px_7.1px_rgba(0,0,0,0.25)]`}
+          className={`text-center text-[15px] my-2 w-[300px] md:w-fit md:my-2 md:text-[36px] md:drop-shadow-[0_35px_55px_rgba(0,0,0,0.45)] font-extralight ${poppins.className}  `}
         >
           Connecting just about everyone to just about everyone else
         </div>
         <VisaCard />
-        <div className="mt-5">
-          <Button className="h-[50px] text-xl w-fit bg-[#1451CB] rounded-full text-white">
+        <div className="mt-2 md:mt-5">
+          <Button className="md:h-[50px] md:text-xl w-fit bg-[#1451CB] rounded-full text-white">
             Tap To Pay With Visa
           </Button>
         </div>

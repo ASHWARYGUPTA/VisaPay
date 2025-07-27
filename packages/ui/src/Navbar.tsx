@@ -1,14 +1,20 @@
 "use client";
 import React, { JSX, ReactElement, ReactHTMLElement, useState } from "react";
-import Button from "./Button";
 import MenuButton from "./MenuButton";
 import VisaLogo from "./VisaLogo";
+import { Button } from "./components/ui/button";
 
 interface NavBarExtras {
   moodChanger?: React.ElementType;
+  functionButton1: () => void;
+  functionButton2: () => void;
 }
 
-export default function NavBar({ moodChanger }: NavBarExtras) {
+export default function NavBar({
+  moodChanger,
+  functionButton1,
+  functionButton2,
+}: NavBarExtras) {
   const [p, useP] = useState(false);
   return (
     <>
@@ -23,13 +29,25 @@ export default function NavBar({ moodChanger }: NavBarExtras) {
             </div>
           </div>
 
-          <div className="flex justify-between items-center mr-4">
-            <div className="">
+          <div className="flex justify-between items-center">
+            <div className="mr-[20px]">
               {moodChanger ? React.createElement(moodChanger) : null}
             </div>
-            <div className="invisible sm:visible flex justify-between items-center">
-              <Button>Sign In</Button>
-              <Button>Sign Up</Button>
+            <div className="invisible sm:visible flex justify-between items-center mr-3">
+              {/* <Button>Sign In</Button>
+              <Button>Sign Up</Button> */}
+              <Button
+                className="h-[45px] w-[100px] rounded-3xl text-[17px] mr-1 bg-[#1451CB]"
+                onClick={functionButton1}
+              >
+                Sign In
+              </Button>
+              <Button
+                className="h-[45px] w-[100px] rounded-3xl text-[17px] mr-1 bg-[#F3C851]"
+                onClick={functionButton2}
+              >
+                Sign Up
+              </Button>
             </div>
             <div className="absolute right-4  sm:hidden">
               <MenuButton
@@ -40,9 +58,9 @@ export default function NavBar({ moodChanger }: NavBarExtras) {
             </div>
           </div>
         </div>
-        <div className={`mt-2  ${!p ? "hidden" : ""}`}>
-          <Button>Login</Button>
-          <Button>Login</Button>
+        <div className={`mt-2 ${!p ? "hidden" : ""} `}>
+          <Button>Sign In</Button>
+          <Button>Sign up</Button>
         </div>
       </div>
     </>
