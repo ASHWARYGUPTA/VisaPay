@@ -1,9 +1,9 @@
 import "@repo/ui/styles.css";
 import "./globals.css";
+import { ThemeProvider } from "../components/theme-provider";
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
-
-const geist = Geist({ subsets: ["latin"] });
+import NavBar from "@repo/ui/Navbar";
+import { ModeToggle } from "../components/mode-toggler";
 
 export const metadata: Metadata = {
   title: "Create Turborepo",
@@ -16,8 +16,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={geist.className}>{children}</body>
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Courier+Prime:wght@400;700&display=swap"
+          rel="stylesheet"
+        ></link>
+      </head>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NavBar moodChanger={ModeToggle} />
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
