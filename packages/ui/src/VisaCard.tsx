@@ -5,7 +5,7 @@ import VisaLogoWhite from "./lib/Icons/Visa_Logo_White";
 export default function VisaCard() {
   return (
     <>
-      <div className="h-[190px] w-[340px] md:w-[500px] md:h-[290px] rounded-3xl bg-gradient-to-br from-[#C8CFF3] to-[#1434CB] grid grid-cols-3 grid-rows-12 text-white">
+      <div className="mb-2 border-2 h-[190px] w-[340px] md:w-[500px] md:h-[290px] rounded-3xl bg-gradient-to-br from-[#C8CFF3] to-[#1434CB] grid grid-cols-3 grid-rows-12 text-white shadow-lg hover:shadow-2xl hover:scale-102 transition-all duration-[2s] ease-in-out">
         <div className="row-span-4 col-span-3"></div>
 
         <div className="row-span-2 col-span-3 grid grid-cols-6">
