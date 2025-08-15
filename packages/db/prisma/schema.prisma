@@ -15,23 +15,26 @@ datasource db {
 }
 
 model User {
-  id              String   @id @default(cuid())
-  email           String   @unique
+  id              String           @id @default(cuid())
+  username        String?          @unique
+  email           String?          @unique
   password        String?
+  typeSignIn      String           @default("Credentials")
   name            String?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  currentBalance  Float            @default(0)
   paymentsMade    Payments[]
 }
 
 model Payments {
-  id              String   @id @default(cuid())
+  id              String        @id @default(cuid())
   userId          String
-  user            User     @relation(fields: [userId], references: [id])
+  user            User          @relation(fields: [userId], references: [id])
   amount          Float
-  currency        String   @default("INR")
-  status          String   @default("pending")
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
+  currency        String        @default("INR")
+  status          String        @default("pending")
+  createdAt       DateTime      @default(now())
+  updatedAt       DateTime      @updatedAt
   description     String?
 }

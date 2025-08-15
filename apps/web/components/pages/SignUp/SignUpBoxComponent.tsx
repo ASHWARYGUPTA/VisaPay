@@ -1,5 +1,4 @@
 "use client";
-
 import { cn } from "@repo/ui/lib/utils";
 import { Button } from "@repo/ui/components/ui/button";
 import {
@@ -14,9 +13,12 @@ import { Label } from "@repo/ui/components/ui/label";
 import { useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
 import { useSearchParams } from "next/navigation";
+import { prisma } from "@repo/db";
+import { useState } from "react";
 
-export default function SignInBoxComponent() {
+export default function SignUpBoxComponent() {
   const searchParams = useSearchParams();
+  const [formIsCorrect, useFormIsCorrect] = useState(false);
   const errorParams = searchParams.get("error");
   const {
     register,
@@ -24,16 +26,25 @@ export default function SignInBoxComponent() {
     formState: { errors },
   } = useForm();
   const onSubmit = async (data: any) => {
-    // console.log("Data: ", data);
     try {
       const res = await signIn("credentials", {
         username: data.email,
         password: data.password,
-        callbackUrl: "/",
+        callbackUrl: "/signin",
       });
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const onChangeEmail = async (data: any) => {
+    const email = data.email;
+
+    const isThere = await prisma.user.count({
+      where: {
+        email: email,
+      },
+    });
   };
   return (
     <>
@@ -41,10 +52,10 @@ export default function SignInBoxComponent() {
         <Card className="w-[400px] md:w-[500px] mt-[80px] backdrop-blur-md bg-white/10 border border-white/30 shadow-lg">
           <CardHeader className="text-center">
             <CardTitle className="text-2xl font-bold">
-              Sign In to VisaPay
+              Sign Up to VisaPay
             </CardTitle>
             <CardDescription>
-              Login with your Credentials or Google account
+              Sign up with your Credentials or Google account
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -63,10 +74,25 @@ export default function SignInBoxComponent() {
                       type="email"
                       placeholder="m@example.com"
                       {...register("email", { required: "Email is required" })}
+                      onChange={async () => {}}
                     />
                     {errors.email && (
                       <span className="text-red-500 text-xs">
                         {errors.email.message as string}
+                      </span>
+                    )}
+                  </div>
+                  <div className="grid gap-3">
+                    <Label htmlFor="name">Name</Label>
+                    <Input
+                      id="name"
+                      type="text"
+                      placeholder="Enter Your Name"
+                      {...register("name", { required: "Name is required" })}
+                    />
+                    {errors.name && (
+                      <span className="text-red-500 text-xs">
+                        {errors.name.message as string}
                       </span>
                     )}
                   </div>
@@ -94,7 +120,7 @@ export default function SignInBoxComponent() {
                     )}
                   </div>
                   <Button type="submit" className="w-full">
-                    Login
+                    SignUp
                   </Button>
                 </div>
               </div>
@@ -113,9 +139,9 @@ export default function SignInBoxComponent() {
                 </Button>
               </div>
               <div className="text-center text-sm">
-                Don&apos;t have an account?{" "}
+                Already have an account?{" "}
                 <a href="#" className="underline underline-offset-4">
-                  Sign up
+                  Sign in
                 </a>
               </div>
             </form>
