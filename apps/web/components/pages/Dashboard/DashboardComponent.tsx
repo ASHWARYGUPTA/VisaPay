@@ -26,7 +26,7 @@ export default function DashboardComponent() {
           </div>
           <div className="mt-5 w-[60%] rounded-[30px] h-svh bg-[#ffffffa7] grid grid-rows-10 grid-cols-3">
             <div className="row-span-2 flex flex-col justify-center items-center col-span-1 ">
-              <div className="text-xl font-bold">Your Current Balance: </div>
+              <div className="">Your Current Balance: </div>
               <div>123123123123</div>
             </div>
           </div>
