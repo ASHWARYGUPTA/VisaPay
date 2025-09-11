@@ -6,10 +6,14 @@
 VisaPay is a modern **payment wallet application** built with cutting-edge technologies to simplify, secure, and enhance digital payments. The application provides a seamless experience for making safe payments, managing user authentication, and ensuring reliable transaction handling.
 
 The project is designed to be **scalable, secure, and extensible**, with future possibilities of integrating **crypto payments, Redis-based queuing systems, and AI-powered smart contract handling**.
+<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/47396674-1ac5-4f04-a5d4-4fbdc1e5eea8" />
+
 
 ---
 
 ## 🚀 Features
+<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/59114961-c3dd-40fe-896c-3613f9785858" />
+
 
 * **User Authentication** → Secure login and sign-up using **NextAuth.js**.
 * **Transaction Handling** → Safe and atomic **database transactions** using **Prisma** ORM.
@@ -17,6 +21,8 @@ The project is designed to be **scalable, secure, and extensible**, with future 
 * **Scalable Architecture** → Built using **Turborepo** for monorepo management.
 * **Modern UI/UX** → Responsive and elegant design powered by **Tailwind CSS**.
 * **Future-Ready** → Designed with extensions for crypto, Redis queuing, and Kubernetes deployment in mind.
+<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/78cd2843-ae18-4307-b0f0-321affc140c6" />
+
 
 ---
 
