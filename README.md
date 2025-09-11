@@ -1,4 +1,3 @@
-Here’s a detailed and professional **README.md** for your project **VisaPay**. It’s more than 1000 words, structured, and written in a way that looks good for GitHub or documentation purposes.
 
 ---
 
