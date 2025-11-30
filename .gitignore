@@ -28,9 +28,15 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
+.env
+!.env.example
 
 # turbo
 .turbo
 
 # ui
 dist/
+
+# markdown files (except README.md)
+*.md
+!README.md

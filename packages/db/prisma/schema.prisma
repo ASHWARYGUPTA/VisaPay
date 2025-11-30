@@ -15,26 +15,153 @@ datasource db {
 }
 
 model User {
-  id              String           @id @default(cuid())
-  username        String?          @unique
-  email           String?          @unique
-  password        String?
-  typeSignIn      String           @default("Credentials")
-  name            String?
-  createdAt       DateTime         @default(now())
-  updatedAt       DateTime         @updatedAt
-  currentBalance  Int              @default(0)   //Stored in paises
-  paymentsMade    Payments[]
+  id                    String           @id @default(cuid())
+  username              String?          @unique
+  email                 String?          @unique
+  password              String?
+  typeSignIn            String           @default("Credentials")
+  name                  String?
+  createdAt             DateTime         @default(now())
+  updatedAt             DateTime         @updatedAt
+  currentBalance        Int              @default(12000000)   //Stored in paises
+  paymentPin            String?                       // Hashed 4-6 digit PIN
+  pinSetAt              DateTime?                     // When PIN was set/updated
+  paymentsMade          Payments[]
+  transactionsSent      Transaction[]    @relation("SentTransactions")
+  transactionsReceived  Transaction[]    @relation("ReceivedTransactions")
+  moneyRequestsSent     MoneyRequest[]   @relation("SentRequests")
+  moneyRequestsReceived MoneyRequest[]   @relation("ReceivedRequests")
+  paymentSessions       PaymentSession[]
 }
 
 model Payments {
   id              String        @id @default(cuid())
   userId          String
   user            User          @relation(fields: [userId], references: [id])
-  amount          Int           //Storing it as paises rather than ruppes
+  amount          Int      
   currency        String        @default("INR")
   status          String        @default("pending")
   createdAt       DateTime      @default(now())
   updatedAt       DateTime      @updatedAt
   description     String?
+}
+
+model Transaction {
+  id                String              @id @default(cuid())
+  fromUserId        String
+  toUserId          String
+  amount            Int                 // Stored in paises
+  currency          String              @default("INR")
+  description       String?
+  status            TransactionStatus   @default(PENDING)
+  type              TransactionType
+  failureReason     String?
+  metadata          Json?               // For additional transaction data
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime            @updatedAt
+  completedAt       DateTime?
+  
+  fromUser          User                @relation("SentTransactions", fields: [fromUserId], references: [id])
+  toUser            User                @relation("ReceivedTransactions", fields: [toUserId], references: [id])
+  attempts          TransactionAttempt[]
+  
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model TransactionAttempt {
+  id              String              @id @default(cuid())
+  transactionId   String
+  attemptNumber   Int
+  status          TransactionStatus
+  errorMessage    String?
+  errorCode       String?
+  createdAt       DateTime            @default(now())
+  
+  transaction     Transaction         @relation(fields: [transactionId], references: [id], onDelete: Cascade)
+  
+  @@index([transactionId])
+  @@unique([transactionId, attemptNumber])
+}
+
+model MoneyRequest {
+  id              String              @id @default(cuid())
+  fromUserId      String              // Person requesting money
+  toUserId        String              // Person who should pay
+  amount          Int                 // Stored in paises
+  currency        String              @default("INR")
+  description     String?
+  status          RequestStatus       @default(PENDING)
+  message         String?
+  expiresAt       DateTime?
+  createdAt       DateTime            @default(now())
+  updatedAt       DateTime            @updatedAt
+  respondedAt     DateTime?
+  transactionId   String?             @unique
+  
+  fromUser        User                @relation("SentRequests", fields: [fromUserId], references: [id])
+  toUser          User                @relation("ReceivedRequests", fields: [toUserId], references: [id])
+  
+  @@index([fromUserId])
+  @@index([toUserId])
+  @@index([status])
+}
+
+enum TransactionStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+  CANCELLED
+}
+
+enum TransactionType {
+  SEND
+  REQUEST_PAYMENT
+  REFUND
+}
+
+enum RequestStatus {
+  PENDING
+  ACCEPTED
+  REJECTED
+  EXPIRED
+  CANCELLED
+}
+
+model PaymentSession {
+  id                String              @id @default(cuid())
+  userId            String
+  sessionToken      String              @unique
+  paymentType       PaymentType
+  amount            Int                 // In paise
+  toUserIdentifier  String
+  description       String?
+  metadata          Json?               // Additional payment data
+  status            PaymentSessionStatus @default(PENDING)
+  expiresAt         DateTime
+  createdAt         DateTime            @default(now())
+  completedAt       DateTime?
+  
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  @@index([userId])
+  @@index([sessionToken])
+  @@index([status])
+  @@index([expiresAt])
+}
+
+enum PaymentType {
+  SEND_MONEY
+  REQUEST_MONEY
+}
+
+enum PaymentSessionStatus {
+  PENDING
+  VERIFIED
+  COMPLETED
+  EXPIRED
+  CANCELLED
 }

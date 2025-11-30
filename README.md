@@ -1,4 +1,3 @@
-
 ---
 
 # VisaPay 💳
@@ -6,23 +5,53 @@
 VisaPay is a modern **payment wallet application** built with cutting-edge technologies to simplify, secure, and enhance digital payments. The application provides a seamless experience for making safe payments, managing user authentication, and ensuring reliable transaction handling.
 
 The project is designed to be **scalable, secure, and extensible**, with future possibilities of integrating **crypto payments, Redis-based queuing systems, and AI-powered smart contract handling**.
+
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/47396674-1ac5-4f04-a5d4-4fbdc1e5eea8" />
+
+## 📚 Quick Links
+
+- **[🚀 Quick Start Guide](QUICKSTART.md)** - Get up and running in 3 steps
+- **[🔐 Authentication Setup](AUTH_SETUP.md)** - Complete auth documentation
+- **[📝 Implementation Summary](IMPLEMENTATION_SUMMARY.md)** - What's been built
+- **[🔧 Troubleshooting](TROUBLESHOOTING.md)** - Common issues and solutions
 
 
 ---
 
 ## 🚀 Features
+
 <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/59114961-c3dd-40fe-896c-3613f9785858" />
 
+### 🔐 Authentication & Security
 
-* **User Authentication** → Secure login and sign-up using **NextAuth.js**.
-* **Transaction Handling** → Safe and atomic **database transactions** using **Prisma** ORM.
-* **Payment Management** → Make fast and reliable payments with complete safety checks.
-* **Scalable Architecture** → Built using **Turborepo** for monorepo management.
-* **Modern UI/UX** → Responsive and elegant design powered by **Tailwind CSS**.
-* **Future-Ready** → Designed with extensions for crypto, Redis queuing, and Kubernetes deployment in mind.
-<img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/78cd2843-ae18-4307-b0f0-321affc140c6" />
+- **Complete Auth System** → Secure login and sign-up using **NextAuth.js** with JWT tokens
+- **Multiple Auth Providers** → Support for credentials (email/password) and Google OAuth
+- **Password Security** → Bcrypt hashing with salt rounds for maximum security
+- **Protected Routes** → Middleware-based route protection for dashboard and user areas
+- **Session Management** → Secure session handling with automatic refresh
 
+### 💰 Payment & Transactions
+
+- **Transaction Handling** → Safe and atomic **database transactions** using **Prisma** ORM
+- **Payment Management** → Make fast and reliable payments with complete safety checks
+- **Balance Tracking** → Real-time balance updates and transaction history
+- **Payment Status** → Track payment status (pending, completed, failed)
+
+### 🎨 User Interface
+
+- **Modern Dashboard** → Beautiful, responsive dashboard with statistics and recent transactions
+- **Glassmorphism Design** → Modern UI with glassmorphism effects on auth pages
+- **Dark Mode Support** → Full dark mode support across the application
+- **Mobile Responsive** → Optimized for all screen sizes and devices
+- **Form Validation** → Real-time validation with clear error messages
+
+### 🏗️ Architecture
+
+- **Scalable Architecture** → Built using **Turborepo** for monorepo management
+- **Type Safety** → Full TypeScript support for better code quality
+- **Modern UI/UX** → Responsive and elegant design powered by **Tailwind CSS**
+- **Future-Ready** → Designed with extensions for crypto, Redis queuing, and Kubernetes deployment in mind
+  <img width="1920" height="932" alt="image" src="https://github.com/user-attachments/assets/78cd2843-ae18-4307-b0f0-321affc140c6" />
 
 ---
 
@@ -103,9 +132,9 @@ This ensures **safe payments** where balances are updated only if the transactio
 
 User authentication is powered by **NextAuth.js**. It supports:
 
-* **Email/Password Authentication**
-* **OAuth Providers (Google, GitHub, etc.)**
-* **Session Management with JWT**
+- **Email/Password Authentication**
+- **OAuth Providers (Google, GitHub, etc.)**
+- **Session Management with JWT**
 
 Example configuration:
 
@@ -140,10 +169,10 @@ This ensures that only authenticated users can access wallet functionality.
 
 Security is a primary concern for payment systems. VisaPay uses multiple safety mechanisms:
 
-* **Atomic DB Transactions** → Prevents partial failures.
-* **User Authentication** → Ensures payments are authorized.
-* **Validation Layer** → Prevents invalid or fraudulent payments.
-* **Audit Logs** → Keeps a record of all payments for transparency.
+- **Atomic DB Transactions** → Prevents partial failures.
+- **User Authentication** → Ensures payments are authorized.
+- **Validation Layer** → Prevents invalid or fraudulent payments.
+- **Audit Logs** → Keeps a record of all payments for transparency.
 
 This makes VisaPay **secure, reliable, and user-friendly**.
 
@@ -154,28 +183,24 @@ This makes VisaPay **secure, reliable, and user-friendly**.
 VisaPay is designed to grow beyond traditional payments. Planned future improvements include:
 
 1. **Enabling Crypto Payments**
-
-   * Integration with blockchain wallets (e.g., MetaMask, WalletConnect).
-   * Seamless handling of Ethereum or Bitcoin payments.
-   * Functionality as a **browser extension** for easy crypto transactions.
+   - Integration with blockchain wallets (e.g., MetaMask, WalletConnect).
+   - Seamless handling of Ethereum or Bitcoin payments.
+   - Functionality as a **browser extension** for easy crypto transactions.
 
 2. **Redis-based Queuing Mechanism**
-
-   * Use **Redis** to implement a queuing system for high-volume payment requests.
-   * Prevent race conditions, enable retries, and ensure fault-tolerant transactions.
-   * Useful for handling large-scale concurrent payment traffic.
+   - Use **Redis** to implement a queuing system for high-volume payment requests.
+   - Prevent race conditions, enable retries, and ensure fault-tolerant transactions.
+   - Useful for handling large-scale concurrent payment traffic.
 
 3. **Kubernetes Deployment**
-
-   * Deploy VisaPay in a **serverless, containerized environment**.
-   * Autoscaling with Kubernetes to handle spikes in traffic.
-   * CI/CD pipelines for smooth deployment and upgrades.
+   - Deploy VisaPay in a **serverless, containerized environment**.
+   - Autoscaling with Kubernetes to handle spikes in traffic.
+   - CI/CD pipelines for smooth deployment and upgrades.
 
 4. **AI-Powered Smart Contracts**
-
-   * Allow users to create **smart contracts** beyond payments.
-   * Hide blockchain complexity by enabling **AI-assisted contract creation**.
-   * Use natural language input to generate, validate, and deploy contracts safely.
+   - Allow users to create **smart contracts** beyond payments.
+   - Hide blockchain complexity by enabling **AI-assisted contract creation**.
+   - Use natural language input to generate, validate, and deploy contracts safely.
 
 ---
 
@@ -185,9 +210,9 @@ Follow these steps to run VisaPay locally:
 
 ### Prerequisites
 
-* Node.js (>= 18.x)
-* PostgreSQL (or MySQL, as per Prisma config)
-* pnpm (preferred with Turborepo)
+- Node.js (>= 18.x)
+- PostgreSQL (or MySQL, as per Prisma config)
+- pnpm (preferred with Turborepo)
 
 ### Steps
 
@@ -205,14 +230,14 @@ Follow these steps to run VisaPay locally:
    ```
 
 3. Setup database:
-
-   * Configure `.env` file:
+   - Configure `.env` file:
 
      ```env
      DATABASE_URL="postgresql://user:password@localhost:5432/visapay"
      NEXTAUTH_SECRET="your-secret"
      ```
-   * Run Prisma migration:
+
+   - Run Prisma migration:
 
      ```bash
      pnpm prisma migrate dev
@@ -230,10 +255,10 @@ Follow these steps to run VisaPay locally:
 
 ## 🧑‍💻 Usage
 
-* **Sign up/Login** → Create an account or log in securely.
-* **Add Funds** → Load money into your wallet.
-* **Send Payments** → Transfer money to other VisaPay users.
-* **View Transactions** → Track all past payments in your dashboard.
+- **Sign up/Login** → Create an account or log in securely.
+- **Add Funds** → Load money into your wallet.
+- **Send Payments** → Transfer money to other VisaPay users.
+- **View Transactions** → Track all past payments in your dashboard.
 
 ---
 
@@ -241,32 +266,32 @@ Follow these steps to run VisaPay locally:
 
 VisaPay is built with **security-first principles**:
 
-* **JWT-based session management**
-* **Password hashing (bcrypt/argon2)**
-* **Validation and sanitization of inputs**
-* **Prisma’s query safety features**
-* **SSL and HTTPS enforcement in production**
+- **JWT-based session management**
+- **Password hashing (bcrypt/argon2)**
+- **Validation and sanitization of inputs**
+- **Prisma’s query safety features**
+- **SSL and HTTPS enforcement in production**
 
 ---
 
 ## 📊 Performance and Scalability
 
-* **Turborepo Monorepo Setup** ensures modular scaling of services.
-* **Next.js Server-Side Rendering** improves SEO and performance.
-* **Prisma ORM** allows optimized database queries.
-* **Future Redis integration** will improve concurrent transaction handling.
+- **Turborepo Monorepo Setup** ensures modular scaling of services.
+- **Next.js Server-Side Rendering** improves SEO and performance.
+- **Prisma ORM** allows optimized database queries.
+- **Future Redis integration** will improve concurrent transaction handling.
 
 ---
 
 ## 📌 Roadmap
 
-* [x] Core authentication system
-* [x] Database-backed transactions
-* [x] Secure payment workflow
-* [ ] Crypto payment integration
-* [ ] Redis queuing system
-* [ ] Kubernetes deployment
-* [ ] AI-powered smart contract generation
+- [x] Core authentication system
+- [x] Database-backed transactions
+- [x] Secure payment workflow
+- [ ] Crypto payment integration
+- [ ] Redis queuing system
+- [ ] Kubernetes deployment
+- [ ] AI-powered smart contract generation
 
 ---
 
@@ -290,11 +315,11 @@ This project is licensed under the **MIT License**.
 
 ## 💡 Acknowledgments
 
-* **Next.js** team for an incredible React framework.
-* **Prisma** for simplifying database management.
-* **NextAuth.js** contributors for secure authentication workflows.
-* **Tailwind CSS** for making UI development faster and cleaner.
-* **Turborepo** for simplifying monorepo management.
+- **Next.js** team for an incredible React framework.
+- **Prisma** for simplifying database management.
+- **NextAuth.js** contributors for secure authentication workflows.
+- **Tailwind CSS** for making UI development faster and cleaner.
+- **Turborepo** for simplifying monorepo management.
 
 ---
 
