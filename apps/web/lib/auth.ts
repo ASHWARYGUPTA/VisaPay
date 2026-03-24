@@ -4,10 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@repo/db";
 import jwt from "jsonwebtoken";
 import { compare } from "bcrypt";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
