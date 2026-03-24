@@ -110,7 +110,8 @@ const authOptions: AuthOptions = {
           });
 
           if (existingUser && existingUser.typeSignIn !== "Google") {
-            return false;
+            // Account exists but was created with a different provider
+            return "/signin?error=OAuthAccountNotLinked";
           }
 
           if (!existingUser) {
@@ -124,8 +125,8 @@ const authOptions: AuthOptions = {
             });
           }
         } catch (error) {
-          console.error("Sign in error:", error);
-          return false;
+          console.error("Google sign in error:", error);
+          return "/signin?error=OAuthSignInError";
         }
       }
       return true;

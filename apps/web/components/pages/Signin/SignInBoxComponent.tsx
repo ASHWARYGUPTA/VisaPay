@@ -22,11 +22,22 @@ interface SignInForm {
   password: string;
 }
 
+const oauthErrorMessages: Record<string, string> = {
+  OAuthAccountNotLinked:
+    "This email is already registered with a password. Please sign in using your email and password instead.",
+  OAuthSignInError:
+    "An error occurred during Google sign in. Please try again.",
+  AccessDenied: "Access was denied. Please try again.",
+  Callback: "There was a problem with the sign in callback. Please try again.",
+};
+
 export default function SignInBoxComponent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const errorParams = searchParams.get("error");
-  const [error, setError] = useState<string | null>(errorParams);
+  const [error, setError] = useState<string | null>(
+    errorParams ? (oauthErrorMessages[errorParams] ?? errorParams) : null
+  );
   const [loading, setLoading] = useState(false);
 
   const {
