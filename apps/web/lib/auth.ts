@@ -4,10 +4,8 @@ import GoogleProvider from "next-auth/providers/google";
 import { prisma } from "@repo/db";
 import jwt from "jsonwebtoken";
 import { compare } from "bcrypt";
-import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 const authOptions: AuthOptions = {
-  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       name: "Credentials",
@@ -112,7 +110,8 @@ const authOptions: AuthOptions = {
           });
 
           if (existingUser && existingUser.typeSignIn !== "Google") {
-            return false;
+            // Account exists but was created with a different provider
+            return "/signin?error=OAuthAccountNotLinked";
           }
 
           if (!existingUser) {
@@ -126,8 +125,8 @@ const authOptions: AuthOptions = {
             });
           }
         } catch (error) {
-          console.error("Sign in error:", error);
-          return false;
+          console.error("Google sign in error:", error);
+          return "/signin?error=OAuthSignInError";
         }
       }
       return true;
